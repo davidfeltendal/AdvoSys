@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdvsoysFormsIgen.Achievments"
+             Title="Præstationer">
+  <ListView x:Name="AchievementsListView" ItemSelected="AchievementsListView_OnItemSelected">
+    <ListView.ItemTemplate>
+      <OnPlatform x:TypeArguments="DataTemplate">
+        <OnPlatform.Android>
+          <DataTemplate>
+            <ImageCell ImageSource="{Binding Path=IkonForRealz}" Text="{Binding Path=Beskrivelse}" Detail="{Binding Path=DatoOpnåetString}" />
+          </DataTemplate>
+        </OnPlatform.Android>
+        <OnPlatform.WinPhone>
+          <DataTemplate>
+            <ImageCell ImageSource="{Binding Path=IkonForRealz}" Text="{Binding Path=Beskrivelse}" Detail="{Binding Path=DatoOpnåetString}" />
+          </DataTemplate>
+        </OnPlatform.WinPhone>
+        <OnPlatform.iOS>
+          <DataTemplate>
+            <ViewCell>
+              <Grid Padding="5">
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="*" />
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Source="{Binding Path=IkonForRealz}" />
+                <Label Text="{Binding Path=Beskrivelse}" Grid.Column="1" Grid.Row="0" LineBreakMode="WordWrap" FontSize="13" />
+                <Label Text="{Binding Path=DatoOpnåetString}" Grid.Column="1" Grid.Row="1" Style="{x:DynamicResource Key=CaptionStyle}" FontSize="11" />
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </OnPlatform.iOS>
+      </OnPlatform>
+    </ListView.ItemTemplate>
+  </ListView>
+</ContentPage>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdvsoysFormsIgen.HistorikPage">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <DataTemplate x:Key="WinPhoneHeaderTemplate">
+        <ViewCell>
+          <Label Text="{Binding Path=Key, StringFormat='{0:D}'}" Style="{x:DynamicResource Key=SubtitleStyle}" TranslationX="10" TextColor="Accent" />
+        </ViewCell>
+      </DataTemplate>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  
+  <StackLayout>    
+    <Label x:Name="EmptyLabel" Text="Der findes ingen tidsregistreringer for denne dato." Style="{x:DynamicResource Key=SubtitleStyle}" TranslationX="12" TranslationY="10" IsVisible="False" />
+    <ListView x:Name="HistorikListView"
+              ItemSelected="HistorikListView_OnItemSelected"
+              ItemTapped="HistorikListView_OnItemTapped"
+              IsPullToRefreshEnabled="True"
+              IsGroupingEnabled="True"
+              GroupDisplayBinding="{Binding Path=Key, StringFormat='{0:D}'}"
+              Refreshing="HistorikListView_OnRefreshing"
+              RowHeight="56">
+      <ListView.ItemTemplate>
+        <OnPlatform x:TypeArguments="DataTemplate">
+          <OnPlatform.WinPhone>
+            <DataTemplate>
+              <TextCell Text="{Binding Path=Text}">
+                <TextCell.ContextActions>
+                  <MenuItem Text="Slet tidsregistrering" IsDestructive="True" Command="{Binding Path=SletCommand}" />
+                </TextCell.ContextActions>
+              </TextCell>
+            </DataTemplate>
+          </OnPlatform.WinPhone>
+          <OnPlatform.iOS>
+            <DataTemplate>
+              <TextCell Text="{Binding Path=Text}" Detail="{Binding Path=Detail}">
+                <TextCell.ContextActions>
+                  <MenuItem Text="Slet tidsregistrering" IsDestructive="True" Command="{Binding Path=SletCommand}" />
+                </TextCell.ContextActions>
+              </TextCell>
+            </DataTemplate>
+          </OnPlatform.iOS>
+          <OnPlatform.Android>
+            <DataTemplate>
+              <ViewCell>
+                <ViewCell.ContextActions>
+                  <MenuItem Text="Slet tidsregistrering" IsDestructive="True" Command="{Binding Path=SletCommand}" />
+                </ViewCell.ContextActions>
+                <Grid Padding="16, 4, 8, 8">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                  </Grid.RowDefinitions>
+
+                  <Label Grid.Column="0" Grid.Row="0" Text="{Binding Path=Text}" LineBreakMode="TailTruncation" />
+                  <Label Grid.Column="0" Grid.Row="1" Text="{Binding Path=Detail}" TextColor="Gray" LineBreakMode="TailTruncation" />
+                  <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+                    <Image.Source>
+                      <OnPlatform x:TypeArguments="ImageSource" Android="ic_action_next_item.png" />
+                    </Image.Source>
+                  </Image>
+                </Grid>
+              </ViewCell>
+            </DataTemplate>
+          </OnPlatform.Android>
+        </OnPlatform>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Clicked="NyTidsregistrering_OnClicked" Text="Ny">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" Android="ic_action_new.png" iOS="" WinPhone="ApplicationBar.Add.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+  </ContentPage.ToolbarItems>
+</ContentPage>

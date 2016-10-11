@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdvsoysFormsIgen.RegistrerTidPage"
+             IsBusy="{Binding Path=IsBusy}">
+  <StackLayout>
+    <StackLayout.Padding>
+      <OnPlatform x:TypeArguments="Thickness" Android="8" WinPhone="8" iOS="0" />
+    </StackLayout.Padding>
+    <TableView Intent="Form">
+      <TableRoot>
+        <TableSection Title="Hvad">
+          <ViewCell x:Name="VælgSagCell" Tapped="VælgSagCell_OnTapped">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+
+              <Label Grid.Column="0" Text="Sag" Style="{x:DynamicResource Key=BodyStyle}" VerticalOptions="Center" TranslationX="16" />
+              <Label Grid.Column="1" Text="{Binding Path=SelectedSag.Formatted}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" TextColor="Gray" LineBreakMode="TailTruncation" TranslationX="-8" />
+            </Grid>
+          </ViewCell>
+          <ViewCell x:Name="VælgAktivitetCell" Tapped="VælgAktivitetCell_OnTapped">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+
+              <Label Grid.Column="0" Text="Aktivitet" Style="{x:DynamicResource Key=BodyStyle}" VerticalOptions="Center" TranslationX="16"  />
+              <Label Grid.Column="1" Text="{Binding Path=SelectedAktivitet.Formatted}" VerticalOptions="Center" HorizontalOptions="EndAndExpand" TextColor="Gray" LineBreakMode="TailTruncation" TranslationX="-8" />
+            </Grid>
+          </ViewCell>
+        </TableSection>
+        <TableSection Title="Beskrivelse">
+          <ViewCell>
+            <Editor Text="{Binding Path=Beskrivelse, Mode=TwoWay}" />
+          </ViewCell>
+        </TableSection>
+        <TableSection Title="Hvornår">
+          <ViewCell x:Name="VælgDatoCell" Tapped="VælgDatoCell_OnTapped">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+
+              <Label Grid.Column="0" Text="Dato" Style="{x:DynamicResource Key=BodyStyle}" VerticalOptions="Center" TranslationX="16" />
+              <DatePicker Grid.Column="1" x:Name="DatoPicker" Date="{Binding Path=Dato, Mode=TwoWay}" IsEnabled="{Binding Path=KanÆndreDato}" VerticalOptions="Center" HorizontalOptions="End" TranslationX="-16" />
+            </Grid>
+          </ViewCell>
+          <ViewCell x:Name="VælgTidspunktCell" Tapped="VælgTidspunktCell_OnTapped">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+
+              <Label Grid.Column="0" Text="Tidspunkt" Style="{x:DynamicResource Key=BodyStyle}" VerticalOptions="Center" TranslationX="16" />
+              <TimePicker Grid.Column="1" x:Name="TidspunktPicker" Format="HH\:mm" Time="{Binding Path=Tidspunkt, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="End" TranslationX="-16" />
+            </Grid>
+          </ViewCell>
+          <ViewCell x:Name="VælgTidsforbrugCell" Tapped="VælgTidsforbrugCell_OnTapped">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+
+              <Label Grid.Column="0" Text="Tidsforbrug" Style="{x:DynamicResource Key=BodyStyle}" VerticalOptions="Center" TranslationX="16" />
+              <TimePicker Grid.Column="1" x:Name="TidsforbrugPicker" Format="HH\:mm" Time="{Binding Path=Tidsforbrug, Mode=TwoWay}" VerticalOptions="Center" HorizontalOptions="End" TranslationX="-16" />
+            </Grid>
+          </ViewCell>
+        </TableSection>
+      </TableRoot>
+    </TableView>
+
+  </StackLayout>
+
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Gem" Order="Primary" Command="{Binding Path=GemCommand}">
+      <ToolbarItem.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" iOS="" WinPhone="save.png" Android="ic_action_save.png" />
+      </ToolbarItem.Icon>
+    </ToolbarItem>
+  </ContentPage.ToolbarItems>
+</ContentPage>

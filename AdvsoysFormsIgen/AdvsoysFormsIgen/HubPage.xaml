@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:advsoysFormsIgen="clr-namespace:AdvsoysFormsIgen;assembly=AdvsoysFormsIgen"
+            x:Class="AdvsoysFormsIgen.HubPage"
+            Title ="Advosys"
+            CurrentPageChanged="HubPage_OnCurrentPageChanged">
+  <advsoysFormsIgen:MainPage>
+    <advsoysFormsIgen:MainPage.Icon>
+      <OnPlatform x:TypeArguments="FileImageSource" iOS="history.png" Android="history.png" WinPhone="" />
+    </advsoysFormsIgen:MainPage.Icon>
+  </advsoysFormsIgen:MainPage>
+  <advsoysFormsIgen:Achievments>
+    <advsoysFormsIgen:Achievments.Icon>
+      <OnPlatform x:TypeArguments="FileImageSource" iOS="favorites.png" Android="favorites.png" WinPhone="" />
+    </advsoysFormsIgen:Achievments.Icon>
+  </advsoysFormsIgen:Achievments>
+</TabbedPage>

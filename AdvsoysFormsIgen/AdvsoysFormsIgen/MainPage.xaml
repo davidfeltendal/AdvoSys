@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="AdvsoysFormsIgen.MainPage"
+                  Title="Tidsregistrering">
+  <MasterDetailPage.Master>
+    <ContentPage>
+      <ContentPage.Title>
+        <OnPlatform x:TypeArguments="x:String" WinPhone="Dato" Android="Min tidsregistrering" iOS="Min tidsregistrering" />
+      </ContentPage.Title>
+      <ContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource" WinPhone="feature.calendar.png" />
+      </ContentPage.Icon>
+      <ListView x:Name="OversigtListView" SelectedItem="{Binding Path=ValgtDato, Mode=TwoWay}" ItemSelected="OversigtListView_OnItemSelected" IsPullToRefreshEnabled="True" Refreshing="OversigtListView_OnRefreshing">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding Path=Text}" Detail="{Binding Path=Detail}" />
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </ContentPage>
+  </MasterDetailPage.Master>
+  
+  <MasterDetailPage.Detail>
+    <ContentPage>
+      <ActivityIndicator IsRunning="True" IsEnabled="True" IsVisible="True" VerticalOptions="Center" HorizontalOptions="Center" />
+    </ContentPage>
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

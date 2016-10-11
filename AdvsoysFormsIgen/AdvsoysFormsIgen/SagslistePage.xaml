@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AdvsoysFormsIgen.SagslistePage">
+  <StackLayout>
+    <SearchBar x:Name="SearchBar" Placeholder="Søg" TextChanged="SearchBar_OnTextChanged" SearchButtonPressed="SearchBar_OnSearchButtonPressed" />
+    <Label x:Name="FejlLabel" IsVisible="False" Text="Der er ingen internetforbindelse. Listen over sager er muligvis ikke opdateret." />
+    <ListView x:Name="SagerListView" IsGroupingEnabled="True" GroupDisplayBinding="{Binding Path=Key}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding Path=Vedrørende}" Detail="{Binding Path=Navn}" />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>
